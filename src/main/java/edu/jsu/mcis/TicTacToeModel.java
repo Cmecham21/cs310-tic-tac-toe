@@ -126,6 +126,8 @@ public class TicTacToeModel {
         /* Return TRUE if the specified location is within the bounds of the board */
         
         if ((row >= width || col >= width) || (row < 0 || col < 0)){
+            System.out.println("");
+            System.out.println("ERROR! Invalid sqaure!");
             return false;
                 }
             else
@@ -141,7 +143,8 @@ public class TicTacToeModel {
         if (board[row][col] == Mark.EMPTY)
             return false;
         else
-            System.out.println("The square is invalid.");
+            System.out.println("");
+            System.out.println("ERROR! Invalid square");
             return true;  
 
             
