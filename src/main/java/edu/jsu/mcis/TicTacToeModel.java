@@ -107,14 +107,15 @@ public class TicTacToeModel {
                     return true;
             }
                 
-            else{
+            else
                 return false;
-                }
+                
             }
-            else{
+            else
                 return false;
-            }
+
         }
+        
         
         
         
@@ -124,12 +125,14 @@ public class TicTacToeModel {
         
         /* Return TRUE if the specified location is within the bounds of the board */
         
-        if (row <= width && col <= width)
-            return true;
-        else 
+        if ((row >= width || col >= width) || (row < 0 || col < 0)){
             return false;
-        
-    }
+                }
+            else
+                return true;
+            
+            
+        }
 	
     private boolean isSquareMarked(int row, int col) {
         
@@ -138,6 +141,7 @@ public class TicTacToeModel {
         if (board[row][col] == Mark.EMPTY)
             return false;
         else
+            System.out.println("The square is invalid.");
             return true;  
 
             
@@ -177,76 +181,75 @@ public class TicTacToeModel {
         
         /* Check the squares of the board to see if the specified mark is the
            winner */
-
            boolean flag = false;
-        for (int i = 0; i < width; i++){
-            flag = true;
-            for (int j = 0; j < width; j++){
-                if (board[i][j] != mark){
-                    flag = false;
-                }
+
+           for (int i=0; i<width; i++){         //check the rows
+               flag = true;
+               for (int j=0; j<width; j++){
+                   if (board[i][j] != mark)
+                   flag = false;
+               }
+               if (flag){
+                   break;
+               }
+           }
+
+           if (!flag){
+            for (int j=0; j<width; j++){        //check the columns
+                flag = true;
+                for (int i=0; i<width; i++){
+                    if (board[i][j] != mark)
+                        flag = false;
+                }                 
                 if (flag){
                     break;
                 }
             }
-        }
+           }
         
+           //check the diagonals
 
-        if (!flag){
-        for (int j = 0; j < width; j++){
-            flag = true;
-            for (int i = 0; i < width; i++){
-                if (board[i][j] != mark){      
-                    flag = false;
+           if (!flag){
+                flag = true;
+                for (int i = 0; i < width; ++i){
+                    if (board[i][i] != mark){
+                        flag = false;
+                    }
+                }
+ 
             }
-            if (flag){
-                break;
+            if (!flag){
+                flag = true;
+                for (int j = 0;j < width; ++j){
+                    if (board[(width - 1) - j][j] != mark){
+                        flag = false;
+                    }
+                }
             }
-        }
-    }
-}
-        if (!flag){
-            flag = true;
-        for (int i = 0; i < width; i++){
-            if (board[i][i] != mark){  
-                flag = false;
-            }
-            if (flag){
-                break;
-            }
-        }
-    }
 
-        if (!flag){
-            flag = true;
-        for (int i = 0; i < width; i++){
-            if (board[i][(width - 1) - i] != mark){  
-                flag = false;
-            }
-            if (flag){
-                break;
-            }
+
+            return flag;
         }
            
-    }
-    return flag;
-}
-
     private boolean isTie() {
         
         /* Check the squares of the board to see if the game is a tie */
         boolean flag = false;
-        for (int i=0; i<width; i++){
-            for (int j=0; j<width; j++){
-                if (board[i][j] == Mark.EMPTY)
-                flag = true;
-                else
-                    flag = false;
+
+        for (int i = 0; i < width; ++i){
+            for (int j = 0; j < width; ++j){
+                if (board[i][j] == Mark.EMPTY){
+                    flag = true;
+                }
             }
         }
-        return flag;
+        if (flag) {
+            return false;
+        }
+            else
+                return true;
+            
 
-        
         
     }
 
@@ -281,18 +284,23 @@ public class TicTacToeModel {
         
         /* Output the board contents as a string (see examples) */
         
-        int size = 0;
+        int x = 0;
+
         for (int i=0; i<width; i++){
             output.append(i);
         }
+
         output.append("\n");
+
         for (int j=0; j<width; j++){
-            output.append(size + " ");
+            output.append(x + " ");
+
             for (int n=0; n<width; n++){
                 output.append(board[j][n]);
             }
+
             output.append("\n");
-            size++;
+            x++;
         }
         return output.toString();
         
