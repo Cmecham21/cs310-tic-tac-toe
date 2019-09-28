@@ -1,5 +1,10 @@
 package edu.jsu.mcis;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.*;
+
 public class TicTacToeController {
 
     private final TicTacToeModel model;
@@ -44,5 +49,17 @@ public class TicTacToeController {
         view.showResult(model.getResult().toString());
         
     }
+    public String getMarkAsString(int row, int col) {       
+        return (model.getMark(row, col).toString());       
+    }
+   
+    public TicTacToeView getView() {       
+        return view;       
+    }
 
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        
+    }
 }
+
