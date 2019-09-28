@@ -24,7 +24,6 @@ public class TicTacToeView extends JPanel {
         resultLabel.setName("ResultLabel");
 
         for (int row = 0; row < width; row++) {
-
             for (int col = 0; col < width; col++) {
 
                 board[row][col] = new JButton();
