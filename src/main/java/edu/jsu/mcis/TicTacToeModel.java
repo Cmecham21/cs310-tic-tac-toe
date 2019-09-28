@@ -214,7 +214,7 @@ public class TicTacToeModel {
 
            if (!flag){
                 flag = true;
-                for (int i = 0; i < width; ++i){
+                for (int i=0; i<width; ++i){
                     if (board[i][i] != mark){
                         flag = false;
                     }
@@ -223,13 +223,12 @@ public class TicTacToeModel {
             }
             if (!flag){
                 flag = true;
-                for (int j = 0;j < width; ++j){
+                for (int j=0; j<width; ++j){
                     if (board[(width - 1) - j][j] != mark){
                         flag = false;
                     }
                 }
             }
-
 
             return flag;
         }
@@ -239,8 +238,8 @@ public class TicTacToeModel {
         /* Check the squares of the board to see if the game is a tie */
         boolean flag = false;
 
-        for (int i = 0; i < width; ++i){
-            for (int j = 0; j < width; ++j){
+        for (int i=0; i<width; ++i){
+            for (int j=0; j<width; ++j){
                 if (board[i][j] == Mark.EMPTY){
                     flag = true;
                 }
