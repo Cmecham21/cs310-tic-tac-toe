@@ -43,6 +43,7 @@ public class TicTacToeController implements ActionListener {
             if(model.makeMark(row, col)){
                 view.updateSquares();
             }
+
             String result = model.getResult().toString();
 
             if(!result.equals("NONE")){
